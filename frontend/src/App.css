@@ -1,6 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 .App {
   text-align: center;
+  margin-top: 0px;
 }
+.header{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+
+.content {
+  width: 100vw;
+  color: rgb(240, 83, 83); /* Text color */
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(215, 124, 124, 0.5); 
+  backdrop-filter: blur(20px); /* Frosted glass effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  animation: fadeIn 2s ease-out; /* Fade-in animation */
+}
+.content h1{
+  color: rgb(240, 83, 83);
+  margin-right: 100px;
+}
+
+.loader {
+  display: flex;
+  justify-content: top; 
+  align-items: center; 
+  flex-direction: column; 
+  height: 100vh; 
+}
+
+.loader p {
+  color: #050e11; 
+  font-size: 1.2rem;
+}
+
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.highlight {
+  font-weight: 700;
+  color: #674545; /* Highlight name with yellow color */
+}
+
+
 
 .App-logo {
   height: 40vmin;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ThreeDots } from 'react-loader-spinner'; 
 import './styles.css';
-
+import './App.css'
 function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [result, setResult] = useState(null);
@@ -13,14 +14,15 @@ function App() {
   };
 
   const handleSubmit = async (e) => {
-    setLoading(true);
+    
     e.preventDefault();
     // Ensure exactly 4 files are selected
     if (selectedFiles.length !== 4) {
       alert('Please upload exactly 4 videos.');
+      
       return;
     }
-
+    setLoading(true);
     const formData = new FormData();
     // Append all selected files to FormData
     selectedFiles.forEach(file => formData.append('videos', file));
@@ -40,17 +42,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1>🚗 AI Based Traffic Management</h1>
-      <hr/>
+      <div className="header">
+          <div class="content">
+          <h1>AI Based Traffic Management</h1>
+          <p>A project-based learning by <span class="highlight">Ayush Bhardwaj</span></p>
+          <p>Under Guidance of Dr. Vivek Verma.</p>
+          </div>
+      </div>
 
       <div className='main-container'>
         <div className='left'>
           <section id="hero" className="hero">
-            <h2>🚦 Optimize Traffic Flow with AI 🤖</h2>
+            <h2>Optimize Traffic Flow with AI </h2>
             <p>Enhance your city's traffic management with our smart adaptive system. Our technology optimizes traffic light timings based on real-time data to reduce congestion and improve traffic flow.</p>
           </section>
           <section id="upload" className="upload">
-            <h2>📹 Upload Your Traffic Videos</h2>
+            <h2>Upload Your Traffic Videos</h2>
             <p>Select 4 videos showing different roads at an intersection. Our system will analyze these videos to provide optimized traffic light timings for smoother traffic flow.</p>
             <form onSubmit={handleSubmit}>
               <input 
@@ -60,19 +67,24 @@ function App() {
                 onChange={handleFileChange} 
               />
               <br/>
-              <button type="submit">Run Model</button>
+              <button type="submit">Get Your Optimized result</button>
             </form>
           </section>
         </div>
 
         <section id="result" className="result">
           {!loading && !result && (
-            <p className='placeholder'>Optimization results will show here <br/><span>🚦🚦🚦🚦</span></p>
+            <p className='placeholder'>Optimized results will show here <br/><span>🚦🚦🚦🚦</span></p>
           )}
-          {loading && <p className='loader'>Processing videos, it may take a few minutes...</p>}
+          {loading && (
+            <div className='loader'>
+              <ThreeDots color="#00BFFF" height={100} width={100}  />
+              <p>Processing videos, please wait...</p>
+            </div>
+          )}
           {result && !result.error && (
             <>
-              <h2>✅ Optimization Results</h2>
+              <h2> Optimized Results</h2>
               <p>Your traffic light timings have been optimized. Here are the recommended green times for each direction:</p>
               <ul>
                 <li>🚦 North: <span id="north-time">{result.north}</span> seconds</li>

@@ -6,7 +6,7 @@ from algo import optimize_traffic
 
 app = Flask(__name__)
 CORS(app)
-
+app.config['DEBUG'] = False
 @app.route('/upload', methods=['POST'])
 def upload_files():
     files = request.files.getlist('videos')
